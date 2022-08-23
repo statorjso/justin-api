@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Source\\Repos\\React\\api\\api\\api.csproj": {}
+    "C:\\Source\\Repos\\React\\justin-api\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Source\\Repos\\React\\api\\api\\api.csproj": {
+    "C:\\Source\\Repos\\React\\justin-api\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\Repos\\React\\api\\api\\api.csproj",
+        "projectUniqueName": "C:\\Source\\Repos\\React\\justin-api\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Source\\Repos\\React\\api\\api\\api.csproj",
+        "projectPath": "C:\\Source\\Repos\\React\\justin-api\\api\\api.csproj",
         "packagesPath": "C:\\Users\\joh\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\Repos\\React\\api\\api\\obj\\",
+        "outputPath": "C:\\Source\\Repos\\React\\justin-api\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\joh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

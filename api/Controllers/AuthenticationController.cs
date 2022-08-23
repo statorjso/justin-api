@@ -5,10 +5,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using api.Services;
+using api.Models;
+
 namespace api.Controllers
 {
-    public class AuthController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class AuthenticationController : Controller
     {
+        // GET: AuthController/Details/5
+        [HttpGet("Authenticate")]
+        public bool Authenticate(User user)
+        {
+            AuthenticationService authenticationService = new AuthenticationService();
+            return authenticationService.AuthenticateUser(user);
+        }
+
+        // GET: AuthController/Details/5
+        [HttpGet("Test")]
+        public bool Test()
+        {
+            return true;
+        }
+
         // GET: AuthController
         public ActionResult Index()
         {
