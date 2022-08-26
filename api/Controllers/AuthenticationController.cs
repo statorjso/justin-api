@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +15,29 @@ namespace api.Controllers
     [Route("[controller]")]
     public class AuthenticationController : Controller
     {
+        [EnableCors]
         // GET: AuthController/Details/5
-        [HttpGet("Authenticate")]
-        public bool Authenticate(User user)
+        [HttpPost("Authenticate")]
+        public bool Authenticate([FromBody] User user)
         {
             AuthenticationService authenticationService = new AuthenticationService();
             return authenticationService.AuthenticateUser(user);
         }
 
+        //[EnableCors]
+        //// Post: AuthController/Details/5
+        //[HttpPost("Authenticate")]
+        //public bool Authenticate([FromBody] User user)
+        //{
+        //    AuthenticationService authenticationService = new AuthenticationService();
+        //    return authenticationService.AuthenticateUser(user);
+        //}
+
         // GET: AuthController/Details/5
         [HttpGet("Test")]
-        public bool Test()
+        public ActionResult Test()
         {
-            return true;
+            return new JsonResult(true);
         }
 
         // GET: AuthController
