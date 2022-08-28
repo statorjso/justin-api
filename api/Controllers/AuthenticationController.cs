@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using api.Services;
 using api.Models;
+using api.Utilities;
 
 namespace api.Controllers
 {
@@ -15,6 +16,13 @@ namespace api.Controllers
     [Route("[controller]")]
     public class AuthenticationController : Controller
     {
+        //public AuthenticationService _authenticationService;
+
+        //public AuthenticationController(AuthenticationService authenticationService)
+        //{
+        //    _authenticationService = authenticationService;
+        //}
+
         [EnableCors]
         // GET: AuthController/Details/5
         [HttpPost("Authenticate")]
@@ -22,7 +30,54 @@ namespace api.Controllers
         {
             AuthenticationService authenticationService = new AuthenticationService();
             return authenticationService.AuthenticateUser(user);
+            //return _authenticationService.AuthenticateUser(user);
         }
+
+        //[EnableCors]
+        //// GET: AuthController/Details/5
+        //[HttpPost("Authenticate")]
+        //public string Authenticate([FromBody] User user)
+        //{
+        //    if (_authenticationService.AuthenticateUser(user))
+        //    {
+        //        string token = TokenManager.GenerateToken(user.Username);
+        //        return token;
+        //    }
+        //    else
+        //        return "";
+        //}
+
+        //public async Task<IActionResult> Post(User user)
+        //{
+        //    if (_authenticationService.AuthenticateUser(user))
+        //    {
+        //        //create claims details based on the user information
+        //        var claims = new[] {
+        //            new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
+        //            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        //            new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+        //            new Claim("UserId", user.UserId.ToString()),
+        //            new Claim("DisplayName", user.DisplayName),
+        //            new Claim("UserName", user.UserName),
+        //            new Claim("Email", user.Email)
+        //        };
+
+        //        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        //        var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        //        var token = new JwtSecurityToken(
+        //            _configuration["Jwt:Issuer"],
+        //            _configuration["Jwt:Audience"],
+        //            claims,
+        //            expires: DateTime.UtcNow.AddMinutes(10),
+        //            signingCredentials: signIn);
+
+        //        return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+        //    }
+        //    else
+        //    {
+        //        return BadRequest("Invalid credentials");
+        //    }
+        //}
 
         //[EnableCors]
         //// Post: AuthController/Details/5
