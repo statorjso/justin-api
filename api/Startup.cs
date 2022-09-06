@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using api.Services;
+
 namespace api
 {
     public class Startup
@@ -25,6 +27,8 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<AuthenticationService>();
+
             services.AddCors();
             services.AddControllers();
         }

@@ -16,36 +16,48 @@ namespace api.Controllers
     [Route("[controller]")]
     public class AuthenticationController : Controller
     {
-        //public AuthenticationService _authenticationService;
+        public AuthenticationService _authenticationService;
 
-        //public AuthenticationController(AuthenticationService authenticationService)
-        //{
-        //    _authenticationService = authenticationService;
-        //}
-
-        [EnableCors]
-        // GET: AuthController/Details/5
-        [HttpPost("Authenticate")]
-        public bool Authenticate([FromBody] User user)
+        public AuthenticationController(AuthenticationService authenticationService)
         {
-            AuthenticationService authenticationService = new AuthenticationService();
-            return authenticationService.AuthenticateUser(user);
-            //return _authenticationService.AuthenticateUser(user);
+            _authenticationService = authenticationService;
         }
 
         //[EnableCors]
         //// GET: AuthController/Details/5
         //[HttpPost("Authenticate")]
-        //public string Authenticate([FromBody] User user)
+        //public bool Authenticate([FromBody] User user)
         //{
-        //    if (_authenticationService.AuthenticateUser(user))
-        //    {
-        //        string token = TokenManager.GenerateToken(user.Username);
-        //        return token;
-        //    }
-        //    else
-        //        return "";
+        //    //AuthenticationService authenticationService = new AuthenticationService();
+        //    //return authenticationService.AuthenticateUser(user);
+
+        //    return _authenticationService.AuthenticateUser(user);
         //}
+
+        [EnableCors]
+        // GET: AuthController/Details/5
+        [HttpPost("Authenticate")]
+        public string Authenticate([FromBody] User user)
+        {
+            if (_authenticationService.AuthenticateUser(user))
+            {
+                string token = TokenManager.GenerateToken(user.Username);
+                return token;
+            }
+            else
+                return "";
+        }
+
+        [HttpPost("ValidateToken")]
+        public bool ValidateToken([FromBody] string token, string username)
+        {
+            string tokenUsername = TokenManager.ValidateToken(token);
+
+            if (tokenUsername == username)
+                return true;
+            else
+                return false;
+        }
 
         //public async Task<IActionResult> Post(User user)
         //{
